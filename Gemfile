@@ -1,7 +1,8 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
 
-# Specify your gem's dependencies in cpl_codebreaker.gemspec
+source 'https://rubygems.org'
+
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
+
+# Specify your gem's dependencies in codebreaker.gemspec
 gemspec
-
-gem "rake", "~> 12.0"
-gem "rspec", "~> 3.0"

@@ -6,14 +6,10 @@
 .rakeTasks
 .generators
 
-/.bundle/
-/.yardoc
-/_yardoc/
-/coverage/
-/doc/
+/coverage
+/database/data.yml
+/database/data_test.yml
 /pkg/
-/spec/reports/
-/tmp/
 
 # rspec failure tracking
 .rspec_status
