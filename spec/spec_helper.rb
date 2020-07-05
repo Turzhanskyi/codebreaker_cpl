@@ -10,7 +10,7 @@ SimpleCov.start do
 end
 
 require 'bundler/setup'
-require 'codebreaker'
+require 'codebreaker_cpl'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

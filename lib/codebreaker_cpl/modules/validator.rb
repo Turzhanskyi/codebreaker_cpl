@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Codebreaker
+module CodebreakerCpl
   module Modules
     module Validator
       VALUE_FORMAT = /^[1-6]{4}$/.freeze

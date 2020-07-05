@@ -2,30 +2,30 @@
 
 require 'spec_helper'
 
-RSpec.describe Codebreaker::Entities::Statistics do
+RSpec.describe CodebreakerCpl::Entities::Statistics do
   context '#stats method' do
     let(:player_1) do
       {
-        name: '', difficulty: Codebreaker::Entities::Game::DIFFICULTIES.keys.first,
+        name: '', difficulty: CodebreakerCpl::Entities::Game::DIFFICULTIES.keys.first,
         all_attempts: 15, attempts_used: 10, all_hints: 2, hints_used: 0
       }
     end
     let(:player_2) do
       {
-        name: '', difficulty: Codebreaker::Entities::Game::DIFFICULTIES.keys.first,
+        name: '', difficulty: CodebreakerCpl::Entities::Game::DIFFICULTIES.keys.first,
         all_attempts: 15, attempts_used: 15, all_hints: 2, hints_used: 1
       }
     end
     let(:player_3) do
       {
-        name: '', difficulty: Codebreaker::Entities::Game::DIFFICULTIES.keys.first,
+        name: '', difficulty: CodebreakerCpl::Entities::Game::DIFFICULTIES.keys.first,
         all_attempts: 15, attempts_used: 5, all_hints: 2, hints_used: 0
       }
     end
 
     let(:player_4) do
       {
-        name: '', difficulty: Codebreaker::Entities::Game::DIFFICULTIES.keys.last,
+        name: '', difficulty: CodebreakerCpl::Entities::Game::DIFFICULTIES.keys.last,
         all_attempts: 5, attempts_used: 3, all_hints: 1, hints_used: 0
       }
     end

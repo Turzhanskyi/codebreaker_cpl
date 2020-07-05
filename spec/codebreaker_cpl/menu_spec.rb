@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Codebreaker::Entities::Menu do
+RSpec.describe CodebreakerCpl::Entities::Menu do
   let(:hints_array) { [1, 2] }
   let(:code) { [1, 2, 3, 4] }
   let(:command) { '1111' }
@@ -11,7 +11,7 @@ RSpec.describe Codebreaker::Entities::Menu do
   let(:list) do
     [{
       name: valid_name,
-      difficulty: Codebreaker::Entities::Game::DIFFICULTIES.keys.first.to_s,
+      difficulty: CodebreakerCpl::Entities::Game::DIFFICULTIES.keys.first.to_s,
       all_attempts: 15,
       attempts_used: 15,
       all_hints: 2,
@@ -48,7 +48,7 @@ RSpec.describe Codebreaker::Entities::Menu do
   context '#save_result method' do
     it 'expexts the choice of user' do
       expect(subject).to receive(:ask)
-        .with(:save_results_message) { Codebreaker::Entities::Menu::CHOOSE_COMMANDS[:yes] }
+        .with(:save_results_message) { CodebreakerCpl::Entities::Menu::CHOOSE_COMMANDS[:yes] }
       subject.instance_variable_set(:@name, valid_name)
       expect(subject.game).to receive(:to_h).with(valid_name) { {} }
       expect(subject.storage).to receive(:save_game_result).with({})
@@ -74,16 +74,16 @@ RSpec.describe Codebreaker::Entities::Menu do
   end
 
   context '#level_choice method' do
-    let(:difficulties) { Codebreaker::Entities::Game::DIFFICULTIES.keys.join(' | ') }
+    let(:difficulties) { CodebreakerCpl::Entities::Game::DIFFICULTIES.keys.join(' | ') }
     it 'returns #generate_game' do
-      level = Codebreaker::Entities::Game::DIFFICULTIES.keys.first
+      level = CodebreakerCpl::Entities::Game::DIFFICULTIES.keys.first
       expect(subject).to receive(:ask).with(:hard_level, levels: difficulties) { level }
-      expect(subject).to receive(:generate_game).with(Codebreaker::Entities::Game::DIFFICULTIES[level.to_sym])
+      expect(subject).to receive(:generate_game).with(CodebreakerCpl::Entities::Game::DIFFICULTIES[level.to_sym])
       subject.send(:level_choice)
     end
 
     it 'returns #game_menu' do
-      exit = Codebreaker::Entities::Menu::COMMANDS[:exit]
+      exit = CodebreakerCpl::Entities::Menu::COMMANDS[:exit]
       expect(subject).to receive(:ask).with(:hard_level, levels: difficulties) { exit }
       expect(subject).to receive(:game_menu)
       subject.send(:level_choice)
@@ -99,13 +99,13 @@ RSpec.describe Codebreaker::Entities::Menu do
 
   context '#choice_code_process method' do
     it 'returns #take_a_hint!' do
-      subject.instance_variable_set(:@guess, Codebreaker::Entities::Menu::HINT_COMMAND)
+      subject.instance_variable_set(:@guess, CodebreakerCpl::Entities::Menu::HINT_COMMAND)
       expect(subject).to receive(:hint_process)
       subject.send(:choice_code_process)
     end
 
     it 'returns #game_menu' do
-      subject.instance_variable_set(:@guess, Codebreaker::Entities::Menu::COMMANDS[:exit])
+      subject.instance_variable_set(:@guess, CodebreakerCpl::Entities::Menu::COMMANDS[:exit])
       expect(subject).to receive(:game_menu)
       subject.send(:choice_code_process)
     end
@@ -128,13 +128,13 @@ RSpec.describe Codebreaker::Entities::Menu do
     %i[rules stats start].each do |command|
       it "returns ##{command}" do
         expect(subject).to receive(command)
-        subject.send(:choice_menu_process, Codebreaker::Entities::Menu::COMMANDS[command])
+        subject.send(:choice_menu_process, CodebreakerCpl::Entities::Menu::COMMANDS[command])
       end
     end
 
     it 'returns #exit_from_game' do
       expect(subject).to receive(:exit_from_game)
-      subject.send(:choice_menu_process, Codebreaker::Entities::Menu::COMMANDS[:exit])
+      subject.send(:choice_menu_process, CodebreakerCpl::Entities::Menu::COMMANDS[:exit])
     end
 
     it 'returns #command_error' do
@@ -154,7 +154,7 @@ RSpec.describe Codebreaker::Entities::Menu do
 
   context '#generate_game method' do
     it do
-      difficulty = Codebreaker::Entities::Game::DIFFICULTIES[:easy]
+      difficulty = CodebreakerCpl::Entities::Game::DIFFICULTIES[:easy]
       expect(subject.game).to receive(:generate).with(difficulty)
       expect(subject.renderer).to receive(:message).with(:difficulty,
                                                          hints: difficulty[:hints],
@@ -182,7 +182,7 @@ RSpec.describe Codebreaker::Entities::Menu do
 
   context '#game_process method' do
     it 'returns #handle_win' do
-      subject.game.instance_variable_set(:@attempts, Codebreaker::Entities::Game::DIFFICULTIES[:easy][:attempts])
+      subject.game.instance_variable_set(:@attempts, CodebreakerCpl::Entities::Game::DIFFICULTIES[:easy][:attempts])
       expect(subject).to receive(:ask) { command }
       expect(subject.game).to receive(:win?).with(command) { true }
       expect(subject).to receive(:handle_win)

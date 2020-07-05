@@ -2,17 +2,17 @@
 
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'codebreaker/version'
+require 'codebreaker_cpl/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'codebreaker-cpl'
-  spec.version       = Codebreaker::VERSION
+  spec.name          = 'codebreaker_cpl'
+  spec.version       = CodebreakerCpl::VERSION
   spec.authors       = ['CPL']
   spec.email         = ['cpl.km.ua@gmail.com']
 
-  spec.summary       = 'Codebreaker'
+  spec.summary       = 'CodebreakerCpl'
   spec.description   = 'Logic game'
-  spec.homepage      = 'https://github.com/Turzhanskyi/cpl-codebreaker'
+  spec.homepage      = 'https://github.com/Turzhanskyi/codebreaker_cpl'
   spec.license       = 'MIT'
 
   if spec.respond_to?(:metadata)

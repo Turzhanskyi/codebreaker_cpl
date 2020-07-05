@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Codebreaker
+module CodebreakerCpl
   module Entities
     class Renderer
       def message(msg_name, hashee = {})

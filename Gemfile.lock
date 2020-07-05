@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    codebreaker-cpl (0.1.0)
+    codebreaker_cpl (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -71,7 +71,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (= 2.1.4)
-  codebreaker-cpl!
+  codebreaker_cpl!
   fasterer (= 0.8.3)
   i18n (= 1.8.3)
   pry (= 0.13.1)

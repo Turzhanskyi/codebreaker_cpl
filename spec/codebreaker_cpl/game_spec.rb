@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Codebreaker::Entities::Game do
+RSpec.describe CodebreakerCpl::Entities::Game do
   let(:lose_result) { '-+++' }
   let(:start_code) { '1111' }
   let(:hints_array) { [1, 2] }
@@ -20,13 +20,13 @@ RSpec.describe Codebreaker::Entities::Game do
   context '#generate_secret_code method' do
     it 'checks that number mathes regex template' do
       secret_code = subject.send(:generate_secret_code).join
-      expect(secret_code).to match(/^[1-6]{#{Codebreaker::Entities::Game::DIGITS_COUNT}}$/)
+      expect(secret_code).to match(/^[1-6]{#{CodebreakerCpl::Entities::Game::DIGITS_COUNT}}$/)
     end
   end
 
   context '#generate method' do
     it do
-      difficulty = Codebreaker::Entities::Game::DIFFICULTIES[:easy]
+      difficulty = CodebreakerCpl::Entities::Game::DIFFICULTIES[:easy]
       expect(subject).to receive(:generate_secret_code).and_return(code)
       subject.generate(difficulty)
       expect(subject.attempts).to eq difficulty[:attempts]
@@ -38,8 +38,8 @@ RSpec.describe Codebreaker::Entities::Game do
   context '#start_process method' do
     it do
       process = subject.instance_variable_get(:@process)
-      win_code = Array.new(Codebreaker::Entities::Game::DIGITS_COUNT,
-                           Codebreaker::Entities::Result::MATCHED_DIGIT_CHAR)
+      win_code = Array.new(CodebreakerCpl::Entities::Game::DIGITS_COUNT,
+                           CodebreakerCpl::Entities::Result::MATCHED_DIGIT_CHAR)
       subject.instance_variable_set(:@code, win_code)
       expect(process).to receive(:secret_code_proc).with(win_code.join, start_code)
       subject.start_process(start_code)
@@ -55,7 +55,7 @@ RSpec.describe Codebreaker::Entities::Game do
 
   context '#to_h method' do
     it 'returns hash' do
-      subject.instance_variable_set(:@difficulty, Codebreaker::Entities::Game::DIFFICULTIES[:easy])
+      subject.instance_variable_set(:@difficulty, CodebreakerCpl::Entities::Game::DIFFICULTIES[:easy])
       subject.instance_variable_set(:@attempts, 2)
       subject.instance_variable_set(:@hints, hints_array)
       expect(subject.to_h(valid_name)).to be_an_instance_of(Hash)

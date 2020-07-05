@@ -3,15 +3,19 @@
 require 'spec_helper'
 
 class DummyClass
-  include Codebreaker::Modules::Validator
+  include CodebreakerCpl::Modules::Validator
 end
 
 RSpec.describe DummyClass do
   let(:invalid_range) { (7..9) }
   let(:valid_name) { 'a' * rand(3..20) }
   let(:empty_name) { '' }
-  let(:code_valid) { Array.new(Codebreaker::Entities::Game::DIGITS_COUNT) { rand(Codebreaker::Entities::Game::RANGE) } }
-  let(:code_unvalid) { Array.new(Codebreaker::Entities::Game::DIGITS_COUNT) { rand(invalid_range) } }
+  let(:code_valid) do
+    Array.new(CodebreakerCpl::Entities::Game::DIGITS_COUNT) do
+      rand(CodebreakerCpl::Entities::Game::RANGE)
+    end
+  end
+  let(:code_unvalid) { Array.new(CodebreakerCpl::Entities::Game::DIGITS_COUNT) { rand(invalid_range) } }
 
   context '#check_emptyness method' do
     it 'returns true when name not empty' do
@@ -25,13 +29,13 @@ RSpec.describe DummyClass do
 
   context '#check_name_length method' do
     it 'returns true' do
-      expect(subject.check_length(valid_name, Codebreaker::Entities::Menu::MIN_SIZE_VALUE,
-                                  Codebreaker::Entities::Menu::MAX_SIZE_VALUE)).to be true
+      expect(subject.check_length(valid_name, CodebreakerCpl::Entities::Menu::MIN_SIZE_VALUE,
+                                  CodebreakerCpl::Entities::Menu::MAX_SIZE_VALUE)).to be true
     end
 
     it 'returns false' do
-      expect(subject.check_length(empty_name, Codebreaker::Entities::Menu::MIN_SIZE_VALUE,
-                                  Codebreaker::Entities::Menu::MAX_SIZE_VALUE)).to be false
+      expect(subject.check_length(empty_name, CodebreakerCpl::Entities::Menu::MIN_SIZE_VALUE,
+                                  CodebreakerCpl::Entities::Menu::MAX_SIZE_VALUE)).to be false
     end
   end
 
