@@ -5,3 +5,11 @@
 .history
 .rakeTasks
 .generators
+
+/coverage
+/database/data.yml
+/database/data_test.yml
+/pkg/
+
+# rspec failure tracking
+.rspec_status
